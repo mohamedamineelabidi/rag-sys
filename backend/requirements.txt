@@ -1,0 +1,19 @@
+# Backend Server Dependencies (Query Processing Only)
+# Core web framework
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+python-dotenv==1.0.1
+pydantic==1.10.15  # pydantic v1 for existing BaseModel usage
+
+# LangChain and Azure OpenAI
+langchain==0.2.3
+langchain-openai==0.1.8
+
+# Vector Store - Qdrant (query operations only)
+qdrant-client==1.14.1
+
+# Optional utilities
+tenacity==8.2.3
+pillow-heif==0.16.0
+
+# Note: Document processing dependencies have been moved to scripts/requirements.txt
