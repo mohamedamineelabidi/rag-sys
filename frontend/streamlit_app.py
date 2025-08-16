@@ -769,11 +769,6 @@ def handle_ask_question(question: str, backend_url: str):
             "result": result
         }
         st.session_state.conversation_history.append(history_entry)
-        
-        # Clear the text input after submission
-        if "chat_input" in st.session_state:
-            st.session_state.chat_input = ""
-        st.rerun()
 
 # === PAGE ROUTING ===
 if st.session_state.current_page == "chat":
@@ -801,6 +796,7 @@ if st.session_state.current_page == "chat":
             with col:
                 if st.button(f"💭 {suggestion}", key=f"suggest_{i}", use_container_width=True):
                     handle_ask_question(suggestion, backend_url)
+                    st.rerun()
         
         st.markdown("---")
     
@@ -855,11 +851,16 @@ if st.session_state.current_page == "chat":
         key="chat_input"
     )
     
+    # Callback to handle submission
+    def on_ask_click():
+        if st.session_state.chat_input:
+            st.session_state.processing_question = st.session_state.chat_input
+            st.session_state.chat_input = ""
+
     # Enhanced control buttons
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        if st.button("🔍 Ask Question", use_container_width=True, type="primary"):
-            handle_ask_question(st.session_state.chat_input, backend_url)
+        st.button("🔍 Ask Question", use_container_width=True, type="primary", on_click=on_ask_click)
     with col2:
         search_button = st.button("🔎 Search Only", use_container_width=True)
     with col3:
@@ -878,6 +879,13 @@ if st.session_state.current_page == "chat":
     if clear_button:
         st.session_state.conversation_history = []
         st.success("History cleared!")
+        st.rerun()
+    
+    # Process the question if it was submitted
+    if st.session_state.get("processing_question"):
+        question_to_process = st.session_state.processing_question
+        st.session_state.processing_question = None  # Clear after grabbing
+        handle_ask_question(question_to_process, backend_url)
         st.rerun()
     
     # Process search only
