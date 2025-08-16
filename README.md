@@ -13,13 +13,17 @@ This project is a Retrieval-Augmented Generation (RAG) application that allows y
 
 ```
 rag-project/
-├── backend/         # FastAPI backend application
-├── frontend/        # Streamlit frontend application
-├── scripts/         # Data ingestion and utility scripts
-├── Data/            # Directory for your documents
-├── .env             # Environment variables
+├── backend/               # FastAPI backend application
+├── frontend/              # Streamlit frontend application
+├── scripts/               # Data ingestion and utility scripts
+├── full-documentation/    # Detailed system documentation
+├── .env                   # Environment variables
 └── README.md
 ```
+
+## System Documentation
+
+The `full-documentation` directory contains detailed information about the architecture, components, and functionality of the RAG Document Assistant. It is organized into several markdown files, each covering a specific part of the system. For a comprehensive understanding of the project, please refer to the `index.md` file in that directory.
 
 ## Setup and Installation
 
