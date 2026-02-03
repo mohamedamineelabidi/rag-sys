@@ -589,6 +589,20 @@ This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for d
 
 ---
 
+## Author
+
+<div align="center">
+
+**Created by Mohamed Amine Elabidi**
+
+[![GitHub](https://img.shields.io/badge/GitHub-mohamedamineelabidi-181717?style=for-the-badge&logo=github)](https://github.com/mohamedamineelabidi)
+
+*Software Engineer passionate about AI, RAG systems, and building intelligent applications for the real estate industry.*
+
+</div>
+
+---
+
 ## Support
 
 - **Documentation**: [ARCHITECTURE.md](ARCHITECTURE.md) | [SYSTEM_DOCUMENTATION.md](SYSTEM_DOCUMENTATION.md)
