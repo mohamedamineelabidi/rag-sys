@@ -15,6 +15,14 @@
 
 [Getting Started](#installation) | [Documentation](ARCHITECTURE.md) | [API Reference](#api-reference) | [Contributing](#contributing)
 
+---
+
+### Demo Video
+
+[![Watch Demo](https://img.shields.io/badge/Watch-Demo_Video-red?style=for-the-badge&logo=google-drive)](https://drive.google.com/file/d/15vbux_4qsIx73d2STNASoTCr5KoiHR3Q/view)
+
+> **See the system in action!** Watch our demo video to see how the RAG Real Estate Document Assistant processes documents and answers questions in real-time.
+
 </div>
 
 ---
