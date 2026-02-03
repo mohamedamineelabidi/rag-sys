@@ -1,27 +1,72 @@
-# Virtual Environment
+# =============================================================================
+# Python
+# =============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# =============================================================================
+# Virtual Environments
+# =============================================================================
 venv/
 .venv/
 env/
 ENV/
+.env.local
 
-# Python cache
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Environment variables
+# =============================================================================
+# Environment Variables
+# =============================================================================
 .env
+!.env.example
+
+# =============================================================================
+# IDE and Editors
+# =============================================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# =============================================================================
+# Operating System
+# =============================================================================
+.DS_Store
+Thumbs.db
+*.bak
+
+# =============================================================================
+# Project Specific
+# =============================================================================
+# Data directory (contains user documents)
+Data/
+
+# Indexing cache
+scripts/.indexing_cache.json
+backend/.rag_cache.db
 
 # Log files
 *.log
+logs/
 
-# IDE specific
-.vscode/
-.idea/
-
-# OS specific
-.DS_Store
-Thumbs.db
-Data/
-Data/
+# Temporary files
+tmp/
+temp/

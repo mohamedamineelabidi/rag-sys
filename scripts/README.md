@@ -1,98 +1,90 @@
 # Scripts Directory
 
-This directory contains utility scripts for the RAG project, focusing on data ingestion and management tasks.
+Utility scripts for data ingestion, diagnostics, and system management.
 
-## Scripts
+## Available Scripts
 
-### `ingest_data.py`
+### ingest_data.py
 
-The main data ingestion script for processing and indexing documents into the Qdrant vector database.
-
-#### Features
-- **Incremental indexing** using persistent cache to only process new/modified files
-- **Selective directory indexing** to target specific folders
-- **Document type support**: PDF, DOCX, TXT, XLSX files
-- **Automatic deletion sync** to remove indexed documents when files are deleted
-- **Comprehensive logging** with both console and file output
-
-#### Usage
+Primary data ingestion script for processing and indexing documents into Qdrant.
 
 ```bash
-# Basic usage - incremental indexing of all documents
+# Basic usage - incremental indexing
 python scripts/ingest_data.py
 
-# Force full rescan (ignore cache, reindex everything)
+# Force full rescan (ignore cache)
 python scripts/ingest_data.py --rescan
 
-# Index only specific directories
-python scripts/ingest_data.py --include-dirs "1_HEA,2_ENE"
+# Index specific directories only
+python scripts/ingest_data.py --include-dirs "folder1,folder2"
 
 # Use custom data path
 python scripts/ingest_data.py --data-path "./CustomData"
-
-# Show collection information
-python scripts/ingest_data.py --info
 ```
 
-#### Configuration
+**Features:**
+- Incremental indexing with persistent cache
+- Multi-format support: PDF, DOCX, TXT, XLSX
+- Automatic metadata extraction
+- Batch embedding generation
 
-The script uses the same environment variables as the main application:
+### check_document_count.py
 
-- `QDRANT_URL` - Qdrant server URL
-- `QDRANT_API_KEY` - Qdrant API key
-- `QDRANT_COLLECTION_NAME` - Collection name (default: "documents")
-- `AZURE_OPENAI_*` - Azure OpenAI configuration for embeddings
-- `USE_INDEXING_CACHE` - Enable/disable persistent cache (default: "true")
-- `SYNC_DELETIONS_ON_STARTUP` - Enable/disable deletion sync (default: "true")
-- `INDEXING_INCLUDE_DIRS` - Comma-separated directories to index
+Quick utility to verify the number of documents indexed in Qdrant.
 
-#### Logging
+```bash
+python scripts/check_document_count.py
+```
 
-The script logs to both console and `scripts/ingestion.log` file.
+### diagnose_rag.py
 
-#### Examples
+Comprehensive diagnostic tool for analyzing RAG system health.
 
-1. **Initial setup** - Index all documents:
-   ```bash
-   python scripts/ingest_data.py
-   ```
+```bash
+python scripts/diagnose_rag.py
+```
 
-2. **Update index** after adding new files:
-   ```bash
-   python scripts/ingest_data.py
-   ```
+**Checks performed:**
+- Collection metadata and statistics
+- Document content quality analysis
+- Query relevance testing
+- Embedding quality verification
 
-3. **Rebuild entire index**:
-   ```bash
-   python scripts/ingest_data.py --rescan
-   ```
+### enhance_rag_performance.py
 
-4. **Index only energy-related documents**:
-   ```bash
-   python scripts/ingest_data.py --include-dirs "2_ENE"
-   ```
+Generates performance improvement recommendations based on current system state.
 
-## Integration with Backend
+```bash
+python scripts/enhance_rag_performance.py
+```
 
-The backend server (`backend/main.py`) has been updated to focus solely on serving queries and does not perform document ingestion. This separation provides:
+### fix_rag_threshold.py
 
-- **Faster server startup** - No need to wait for document processing
-- **Better resource management** - Ingestion can run separately on different schedules
-- **Cleaner architecture** - Clear separation of concerns
-- **Flexible deployment** - Can run ingestion as batch jobs or scheduled tasks
+Utility to adjust the similarity score threshold for document retrieval.
 
-## Migration from Old System
+```bash
+python scripts/fix_rag_threshold.py
+```
 
-If you're migrating from the previous integrated system:
+## Configuration
 
-1. The backend server no longer performs automatic document scanning on startup
-2. Run `python scripts/ingest_data.py` to index your documents
-3. The `/rescan` and `/upload` endpoints now return deprecation notices
-4. Use the standalone ingestion script for all document management
+Scripts use the same environment variables as the main application. Ensure your `.env` file is configured properly before running.
 
-## Troubleshooting
+Required variables:
+- `QDRANT_URL`
+- `QDRANT_API_KEY`
+- `AZURE_OPENAI_ENDPOINT`
+- `AZURE_OPENAI_API_KEY`
+- `AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT_NAME`
 
-- **Connection errors**: Check your Qdrant configuration and network connectivity
-- **Embedding errors**: Verify Azure OpenAI credentials and deployment names
-- **File processing errors**: Check file permissions and supported formats
-- **Cache issues**: Delete `backend/.rag_cache.db` to reset the cache
+## Logging
+
+Scripts log to both console and `scripts/ingestion.log` (for ingest_data.py).
+
+## Dependencies
+
+Install script dependencies:
+
+```bash
+pip install -r scripts/requirements.txt
+```

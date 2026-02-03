@@ -297,7 +297,7 @@ class AdvancedRAGService:
         
         if os.environ.get("USE_FAKE_SERVICES", "false").lower() == "true":
             self.llm = None
-            logger.info("✅ Advanced RAG Service initialized in fake mode")
+            logger.info("Advanced RAG Service initialized in fake mode")
         else:
             chat_deployment = get_first_env("AZURE_OPENAI_CHAT_DEPLOYMENT_NAME", "AZURE_OPENAI_GPT_DEPLOYMENT_NAME")
             if not chat_deployment:
@@ -311,7 +311,7 @@ class AdvancedRAGService:
                 temperature=0.1,  # Low temperature for factual responses
                 max_tokens=2000   # Increased for detailed responses
             )
-            logger.info("✅ Advanced RAG Service initialized with Azure OpenAI")
+            logger.info("Advanced RAG Service initialized with Azure OpenAI")
 
     def _detect_source_type(self, filename: str) -> SourceType:
         """Detect source type from filename."""

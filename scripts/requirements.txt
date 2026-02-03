@@ -1,33 +1,33 @@
-# Requirements for the scripts directory
-# These are the same as backend requirements since scripts use the same libraries
+# =============================================================================
+# RAG Document Assistant - Script Dependencies
+# =============================================================================
+# Includes document processing libraries for data ingestion
 
-# Environment management
-python-dotenv==1.0.1
+# Environment Management
+python-dotenv>=1.0.1
 
 # LangChain and Azure OpenAI
-langchain==0.2.3
-langchain-community==0.2.4
-langchain-openai==0.1.8
+langchain>=0.2.0
+langchain-community>=0.2.0
+langchain-openai>=0.1.8
 
-# Vector Store - Qdrant
-qdrant-client[fastembed]==1.14.1
+# Vector Database
+qdrant-client[fastembed]>=1.14.0
 
-# Document Loaders & parsing
-pypdf==4.2.0
-python-docx==1.1.2
-unstructured==0.14.9
-openpyxl==3.1.5
-pdfminer.six==20231228
+# Document Loaders
+pypdf>=4.0.0
+python-docx>=1.1.0
+unstructured>=0.14.0
+openpyxl>=3.1.0
+pdfminer.six>=20231228
+docx2txt>=0.8
 
-# Progress tracking
-tqdm
-pillow-heif==0.16.0
-docx2txt==0.8
-
-# Image and PDF processing dependencies
-matplotlib>=3.5.0
+# Image Processing
 pillow>=9.0.0
+pillow-heif>=0.16.0
+matplotlib>=3.5.0
 pytesseract>=0.3.10
 
-# Optional utilities
-tenacity==8.2.3
+# Utilities
+tqdm>=4.65.0
+tenacity>=8.2.0

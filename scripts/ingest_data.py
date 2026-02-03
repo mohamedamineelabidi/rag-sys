@@ -102,9 +102,9 @@ class DataIngestionProcessor:
         # Initialize cache manager
         self.cache_manager = IndexingCacheManager()
         
-        logger.info(f"🚀 Data Ingestion Processor initialized")
-        logger.info(f"📁 Data path: {self.data_path}")
-        logger.info(f"🎯 Include directories: {self.include_dirs if self.include_dirs else 'All directories'}")
+        logger.info(f"Data Ingestion Processor initialized")
+        logger.info(f"Data path: {self.data_path}")
+        logger.info(f"Include directories: {self.include_dirs if self.include_dirs else 'All directories'}")
 
     def _initialize_qdrant(self) -> QdrantClient:
         """Initialize Qdrant client and ensure collection exists."""
@@ -120,9 +120,9 @@ class DataIngestionProcessor:
             # Ensure collection exists
             try:
                 client.get_collection(COLLECTION_NAME)
-                logger.info(f"✅ Connected to existing Qdrant collection: {COLLECTION_NAME}")
+                logger.info(f"Connected to existing Qdrant collection: {COLLECTION_NAME}")
             except Exception:
-                logger.info(f"📦 Creating new Qdrant collection: {COLLECTION_NAME}")
+                logger.info(f"Creating new Qdrant collection: {COLLECTION_NAME}")
                 client.create_collection(
                     collection_name=COLLECTION_NAME,
                     vectors_config=models.VectorParams(
@@ -130,7 +130,7 @@ class DataIngestionProcessor:
                         distance=models.Distance.COSINE
                     )
                 )
-                logger.info(f"✅ Created Qdrant collection: {COLLECTION_NAME}")
+                logger.info(f"Created Qdrant collection: {COLLECTION_NAME}")
 
             # Ensure payload index for 'section_type' exists for efficient filtering
             try:
@@ -140,7 +140,7 @@ class DataIngestionProcessor:
                     field_name="section_type",
                     field_schema=models.PayloadSchemaType.KEYWORD
                 )
-                logger.info("✅ 'section_type' payload index is configured.")
+                logger.info("'section_type' payload index is configured.")
             except Exception as e:
                 logger.warning(f"Could not create payload index, it might already exist: {e}")
             
@@ -160,7 +160,7 @@ class DataIngestionProcessor:
                 azure_deployment=get_first_env("AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT_NAME"),
                 model=EMBEDDING_MODEL_NAME
             )
-            logger.info(f"✅ Initialized Azure OpenAI embeddings: {EMBEDDING_MODEL_NAME}")
+            logger.info(f"Initialized Azure OpenAI embeddings: {EMBEDDING_MODEL_NAME}")
             return embeddings
         except Exception as e:
             logger.error(f"Failed to initialize embeddings: {e}")

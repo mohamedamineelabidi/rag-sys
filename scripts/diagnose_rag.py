@@ -62,10 +62,10 @@ def initialize_qdrant() -> QdrantClient:
         
         try:
             client.get_collection(COLLECTION_NAME)
-            logger.info(f"✅ Connected to Qdrant collection: {COLLECTION_NAME}")
+            logger.info(f"Connected to Qdrant collection: {COLLECTION_NAME}")
         except Exception as e:
-            logger.warning(f"⚠️ Collection '{COLLECTION_NAME}' not found: {e}")
-            logger.warning("🔧 Run enhanced ingestion script to create the collection")
+            logger.warning(f"Collection '{COLLECTION_NAME}' not found: {e}")
+            logger.warning("Run enhanced ingestion script to create the collection")
         
         return client
         
@@ -83,7 +83,7 @@ def initialize_embeddings() -> AzureOpenAIEmbeddings:
             azure_deployment=get_first_env("AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT_NAME"),
             model=EMBEDDING_MODEL_NAME
         )
-        logger.info(f"✅ Initialized Azure OpenAI embeddings: {EMBEDDING_MODEL_NAME}")
+        logger.info(f"Initialized Azure OpenAI embeddings: {EMBEDDING_MODEL_NAME}")
         return embeddings
     except Exception as e:
         logger.error(f"Failed to initialize embeddings: {e}")

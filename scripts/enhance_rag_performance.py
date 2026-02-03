@@ -52,10 +52,9 @@ def initialize_qdrant() -> QdrantClient:
         
         try:
             client.get_collection(COLLECTION_NAME)
-            logger.info(f"✅ Connected to Qdrant collection: {COLLECTION_NAME}")
+            logger.info(f"Connected to Qdrant collection: {COLLECTION_NAME}")
         except Exception as e:
-            logger.warning(f"⚠️ Collection '{COLLECTION_NAME}' not found: {e}")
-            return None
+            logger.warning(f"Collection '{COLLECTION_NAME}' not found: {e}")
         
         return client
         

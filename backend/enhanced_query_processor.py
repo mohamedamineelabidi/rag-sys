@@ -98,7 +98,7 @@ class EnhancedQdrantQueryProcessor:
         self.qdrant_client = self._initialize_qdrant()
         self.embeddings = self._initialize_embeddings()
         self.query_preprocessor = QueryPreprocessor()
-        logger.info("✅ EnhancedQdrantQueryProcessor initialized")
+        logger.info("EnhancedQdrantQueryProcessor initialized")
 
     def _initialize_qdrant(self) -> QdrantClient:
         """Initialize Qdrant client."""
@@ -113,10 +113,10 @@ class EnhancedQdrantQueryProcessor:
             
             try:
                 client.get_collection(COLLECTION_NAME)
-                logger.info(f"✅ Connected to Qdrant collection: {COLLECTION_NAME}")
+                logger.info(f"Connected to Qdrant collection: {COLLECTION_NAME}")
             except Exception as e:
-                logger.warning(f"⚠️  Collection '{COLLECTION_NAME}' not found: {e}")
-                logger.warning("🔧 Run enhanced ingestion script to create the collection")
+                logger.warning(f"Collection '{COLLECTION_NAME}' not found: {e}")
+                logger.warning("Run enhanced ingestion script to create the collection")
             
             return client
             
@@ -134,7 +134,7 @@ class EnhancedQdrantQueryProcessor:
                 azure_deployment=get_first_env("AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT_NAME"),
                 model=EMBEDDING_MODEL_NAME
             )
-            logger.info(f"✅ Initialized Azure OpenAI embeddings: {EMBEDDING_MODEL_NAME}")
+            logger.info(f"Initialized Azure OpenAI embeddings: {EMBEDDING_MODEL_NAME}")
             return embeddings
         except Exception as e:
             logger.error(f"Failed to initialize embeddings: {e}")
@@ -417,7 +417,7 @@ class InMemoryDocumentProcessor:
                 "contains_units": False
             }
         ]
-        logger.info("✅ Enhanced InMemoryDocumentProcessor initialized with realistic test data")
+        logger.info("InMemoryDocumentProcessor initialized with realistic test data")
 
     def similarity_search(self, query: str, limit: int = 4) -> List[Dict[str, Any]]:
         """Enhanced mock search with better scoring."""

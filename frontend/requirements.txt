@@ -1,0 +1,16 @@
+# Frontend Dependencies
+
+# Web framework
+streamlit>=1.32.0
+
+# HTTP client
+requests>=2.31.0
+
+# Data manipulation
+pandas>=2.0.0
+
+# Visualization
+plotly>=5.18.0
+
+# Environment configuration
+python-dotenv>=1.0.1

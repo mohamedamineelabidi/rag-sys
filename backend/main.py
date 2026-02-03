@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # On Startup
-    logger.info("🚀 === RAG Document Assistant Starting Up ===")
+    logger.info("=== RAG Document Assistant Starting Up ===")
     
     # Validate environment early
     try:
@@ -38,7 +38,7 @@ async def lifespan(app: FastAPI):
         raise
 
     # Initialize services first, so they are available immediately
-    logger.info("📊 Initializing Document Processor and RAG Service...")
+    logger.info("Initializing Document Processor and RAG Service...")
     if os.environ.get("USE_FAKE_SERVICES", "false").lower() == "true":
         logger.info("Using InMemoryDocumentProcessor (fake services mode)")
         doc_processor = InMemoryDocumentProcessor()
@@ -50,20 +50,20 @@ async def lifespan(app: FastAPI):
     # Get collection info
     try:
         collection_info = doc_processor.get_collection_info()
-        logger.info(f"📚 Qdrant Collection Status: {collection_info.get('points_count', 0)} documents indexed")
+        logger.info(f"Qdrant Collection Status: {collection_info.get('points_count', 0)} documents indexed")
     except Exception as e:
         logger.warning(f"Could not get collection info: {e}")
     
     # Note: Document ingestion is now handled separately by scripts/ingest_data.py
     # The backend server only handles search and retrieval operations
-    logger.info("� Document ingestion is handled separately by 'python scripts/ingest_data.py'")
-    logger.info("� This server handles only search and retrieval operations")
+    logger.info("Document ingestion is handled separately by 'python scripts/ingest_data.py'")
+    logger.info("This server handles only search and retrieval operations")
     
-    logger.info("✅ === Server Ready - API endpoints available ===")
+    logger.info("=== Server Ready - API endpoints available ===")
     yield
     
     # On Shutdown
-    logger.info("🛑 === Server shutting down ===")
+    logger.info("=== Server shutting down ===")
     app_state.clear()
 
 

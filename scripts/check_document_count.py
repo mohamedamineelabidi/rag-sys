@@ -51,10 +51,10 @@ def initialize_qdrant() -> QdrantClient:
         
         try:
             client.get_collection(COLLECTION_NAME)
-            logger.info(f"✅ Connected to Qdrant collection: {COLLECTION_NAME}")
+            logger.info(f"Connected to Qdrant collection: {COLLECTION_NAME}")
         except Exception as e:
-            logger.warning(f"⚠️ Collection '{COLLECTION_NAME}' not found: {e}")
-            logger.warning("🔧 Run enhanced ingestion script to create the collection")
+            logger.warning(f"Collection '{COLLECTION_NAME}' not found: {e}")
+            logger.warning("Run enhanced ingestion script to create the collection")
         
         return client
         
@@ -89,8 +89,8 @@ def main():
     # Check if we're using fake services
     use_fake_services = os.environ.get("USE_FAKE_SERVICES", "").lower() == "true"
     if use_fake_services:
-        logger.info("⚠️ Running in FAKE SERVICES mode")
-        logger.info("📊 Document count information not available in this mode")
+        logger.info("Running in FAKE SERVICES mode")
+        logger.info("Document count information not available in this mode")
         return
     
     try:
